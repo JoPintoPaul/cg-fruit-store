@@ -14,7 +14,12 @@ class BasketParser {
       case notFound if notFound.nonEmpty =>
         Left(s"One or more unknown fruits was passed through: ${notFound.mkString(", ")}")
       case _ =>
-        Right(FruitBasket(parsedFruit collect { case Right(fruit) => fruit }))
+        val fruits = parsedFruit collect { case Right(fruit) => fruit }
+        val grouped =
+          fruits
+            .groupBy(identity)
+            .map(group => (group._1, group._2.length))
+        Right(FruitBasket(grouped))
     }
   }
 }

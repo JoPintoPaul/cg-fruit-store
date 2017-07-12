@@ -14,7 +14,7 @@ object Main {
         .map(_.trim)
         .toList
 
-    val checkout = Checkout(new BasketParser(), Catalogue.fruits)
+    val checkout = Checkout(new BasketParser(), Catalogue.fruits, Offers.fruitOffers)
     val checkoutTotal = checkout.checkout(inputAsList)
 
     println(checkoutTotal)

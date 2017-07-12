@@ -16,14 +16,14 @@ class BasketParserSpec extends Specification {
       val validInputs = List("Mango", "Pear", "Pear")
       val actualResult = basketParser.toBasket(validInputs, testFruitCatalogue)
       actualResult must_=== Right(
-        FruitBasket(List(Fruit("Mango", 1.99), Fruit("Pear", 0.5), Fruit("Pear", 0.5)))
+        FruitBasket(Map(Fruit("Mango", 1.99) -> 1, Fruit("Pear", 0.5) -> 2))
       )
     }
 
     "return Right of a fruit basket if all inputs is empty" in {
       val actualResult = basketParser.toBasket(Nil, testFruitCatalogue)
       actualResult must_=== Right(
-        FruitBasket(List())
+        FruitBasket(Map.empty)
       )
     }
 
